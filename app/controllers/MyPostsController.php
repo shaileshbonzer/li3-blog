@@ -55,4 +55,15 @@ class MyPostsController extends Controller {
         //since no post id was specified, redirect to the index page
         $this->redirect(array('MyPosts::index'));
     }
+
+    public function delete() {
+        //Dont run the query if no post id is provided
+        if($this->request->args[0]){
+            //Find matching posts, then delete them
+            $myPost = MyPosts::find($this->request->args[0])->delete();
+
+            //Send the retrieved post data to the view
+            $this->redirect( array('MyPosts::index' ) );
+        }
+    }
 }
