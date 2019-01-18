@@ -17,6 +17,11 @@ use app\models\Users;
 
 class UsersController extends Controller {
     public function index() {
+        if(!Auth::check('member')){
+            //User is not authenticated, redirect to login
+            return $this->redirect('/login/');
+        }
+
         $users = Users::all();
 
         return compact('users');
@@ -43,13 +48,13 @@ class UsersController extends Controller {
         $noauth = false;
 
         //perform the authentication check and redirect on success
-        if (Auth::check('member', $this->request)){
+        if(Auth::check('member', $this->request)){
             //Redirect on successful login
             return $this->redirect('/');
         }
 
         //if theres still post data, and we weren't redirected above, then login failed
-        if ($this->request->data){
+        if($this->request->data){
             //Login failed, trigger the error message
             $noauth = true;
         }

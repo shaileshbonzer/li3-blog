@@ -10,6 +10,8 @@
 namespace app\controllers;
 
 use lithium\action\Controller;
+//lets define a shortcut to the Auth class
+use lithium\security\Auth;
 
 //Tell the controller about any models we may need
 use app\models\MyPosts;
@@ -17,6 +19,11 @@ use app\models\MyPosts;
 class MyPostsController extends Controller {
     //Define a default 'index' for when a user accesses the /posts/ URL
     public function index() {
+        if (!Auth::check('member')){
+            //User is not authenticated, redirect to login
+            return $this->redirect('/login/');
+        }
+
         //Fetch all blog posts from the my_posts table
         $myPosts = MyPosts::all();
 
