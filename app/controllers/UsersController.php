@@ -37,4 +37,24 @@ class UsersController extends Controller {
 
         return compact('register','data');
     }
+
+    public function login() {
+        //assume there's no problem with authentication
+        $noauth = false;
+
+        //perform the authentication check and redirect on success
+        if (Auth::check('member', $this->request)){
+            //Redirect on successful login
+            return $this->redirect('/');
+        }
+
+        //if theres still post data, and we weren't redirected above, then login failed
+        if ($this->request->data){
+            //Login failed, trigger the error message
+            $noauth = true;
+        }
+
+        //Return noauth status
+        return compact('noauth');
+    }
 }
