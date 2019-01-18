@@ -17,10 +17,11 @@ use app\models\MyPosts;
 class MyPostsController extends Controller {
     //Define a default 'index' for when a user accesses the /posts/ URL
     public function index() {
-        //Return an associative array (to be used as tokens in the view)
-        return array(
-            'token' => 'Foobar'
-        );
+        //Fetch all blog posts from the my_posts table
+        $myPosts = MyPosts::all();
+
+        //Send the $my_posts object to our view
+        return compact('myPosts');
     }
 
 

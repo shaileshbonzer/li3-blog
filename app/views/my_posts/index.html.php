@@ -7,6 +7,9 @@
  */
 ?>
 
-<h1><?=$token?></h1>
-<p>This is a basic view.</p>
+<p>Posts listing</p>
 
+<?php foreach($myPosts as $post): ?>
+    <div><?=$post->title ?></div>
+    <div><?=$post->body ?></div>
+<?php endforeach; ?>
