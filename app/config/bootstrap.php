@@ -83,4 +83,8 @@ if (PHP_SAPI === 'cli') {
 	require __DIR__ . '/bootstrap/console.php';
 }
 
+/**
+ * This file contains our applications authentication configuration.
+ */
+require __DIR__ . '/bootstrap/auth.php';
 ?>
