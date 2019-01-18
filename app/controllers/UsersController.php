@@ -62,4 +62,10 @@ class UsersController extends Controller {
         //Return noauth status
         return compact('noauth');
     }
+
+    public function logout(){
+        Auth::clear('member');
+
+        return $this->redirect('/');
+    }
 }
