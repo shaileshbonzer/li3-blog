@@ -66,4 +66,27 @@ class MyPostsController extends Controller {
             $this->redirect( array('MyPosts::index' ) );
         }
     }
+
+    public function edit() {
+
+        //Attempt to fetch the specified post
+        $myPost = MyPosts::find($this->request->args[0]);
+
+        //if the post couldn't be fetched, redirect to index
+        if (!$myPost) {
+            $this->redirect('MyPosts::index');
+        }
+
+        //If we have post data, attempt to save
+        if (($this->request->data) && $myPost->save($this->request->data)) {
+            //If save was successful, redirect to the new post
+            $this->redirect( array(
+                'MyPosts::view',
+                'args' => array($myPost->id)
+            ));
+        }
+
+        //If we haven't been redirected, then send the post info to the view
+        return compact('myPost');
+    }
 }

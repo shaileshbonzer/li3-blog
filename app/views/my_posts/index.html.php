@@ -24,5 +24,6 @@
         </h2>
         <!--Use the body column to show the posts contents -->
         <p><?=$post->body ?></p>
+        <p><a href="/my_posts/edit/<?=$post->id ?>/">Edit This Post</a></p>
     </article>
 <?php endforeach; ?>
