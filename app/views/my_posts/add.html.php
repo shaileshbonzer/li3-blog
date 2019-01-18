@@ -7,6 +7,10 @@
  */
 ?>
 
+<?php if($saved): ?>
+    <h4>Data saved successfully!</h4>
+<?php endif; ?>
+
 <!--Generate the opening form tag-->
 <?=$this->form->create(); ?>
 <!--Generate a text field for "title"-->
