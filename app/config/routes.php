@@ -89,6 +89,11 @@ if (!Environment::is('production')) {
 // Router::connect('/{:controller}/{:action}/{:id:[0-9a-f]{24}}');
 
 /**
+ * Forward to the login page
+ */
+Router::connect('/login/{:args}', 'Users::login');
+
+/**
  * ### Default controller/action routes
  *
  * Finally, connect the default route. This route acts as a catch-all, intercepting requests in the
