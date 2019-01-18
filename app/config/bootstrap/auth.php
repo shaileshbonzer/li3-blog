@@ -16,12 +16,16 @@ Session::config(array(
     'default' => array('adapter' => 'Php')
 ));
 
-//Configure auth
 Auth::config(array(
     'member' => array(
         'adapter' => 'Form', //Specify we're using form authentication method
         'model'   => 'Users', //Specify what model is used for auth
-        'fields'  => array('username', 'password') //Specify which fields are used
+        'fields'  => array('username', 'password'), //Specify which fields are used
+        'filters' => array('password' => array('lithium\security\Hash', 'calculate')),
+        'validators' => array('password' => false),        
+        'session' => array(
+            'persist' => array('username')
+        )
     )
 ));
 ?>
