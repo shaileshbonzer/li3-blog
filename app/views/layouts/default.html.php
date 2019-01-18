@@ -34,6 +34,21 @@
 				<li>
 					<a href="http://li3.me/">More</a>
 				</li>
+				<?php if(!\lithium\security\Auth::check('member')):?>
+					<li>
+						<a href="/login">Login</a>
+					</li>
+				<?php else : ?>
+                    <li>
+                        <a href="/my_posts">Posts</a>
+                    </li>
+                    <li>
+                        <a href="/users">Users</a>
+                    </li>
+					<li>
+						<a href="/users/logout">Logout</a>
+					</li>
+				<?php endif; ?>
 			</ul>
 			<a href="http://li3.me/"><h3>&#10177;</h3></a>
 		</div>
@@ -49,7 +64,6 @@
 		<div class="footer">
 			<p>&copy; Union Of RAD <?php echo date('Y') ?></p>
 		</div>
-
 	</div>
 </body>
 </html>
