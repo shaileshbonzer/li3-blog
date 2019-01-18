@@ -24,7 +24,6 @@ class MyPostsController extends Controller {
         return compact('myPosts');
     }
 
-
     public function add() {
         //Assume save status is false
         $saved = false;
@@ -41,5 +40,19 @@ class MyPostsController extends Controller {
 
         //Return $saved to our view as part of an associative array/token
         return compact('saved');
+    }
+
+    public function view() {
+        //Dont run the query if no post id is provided
+        if($this->request->args[0]){
+            //Get single record from the database where post id matches the URL
+            $myPost = MyPosts::first($this->request->args[0]);
+
+            //Send the retrieved post data to the view
+            return compact('myPost');
+        }
+
+        //since no post id was specified, redirect to the index page
+        $this->redirect(array('MyPosts::index'));
     }
 }
