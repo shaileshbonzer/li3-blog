@@ -23,4 +23,22 @@ class MyPostsController extends Controller {
         );
     }
 
+
+    public function add() {
+        //Assume save status is false
+        $saved = false;
+
+        //If we have any posted or querystring data...
+        if($this->request->data){
+            //Use the MyPost model to create a new dataset
+            $my_post = MyPosts::create($this->request->data);
+
+            //Attempt to save the data, and update the $saved variable
+            //with the outcome of the save attempt (bool)
+            $saved = $my_post->save();
+        }
+
+        //Return $saved to our view as part of an associative array/token
+        return compact('saved');
+    }
 }
