@@ -16,6 +16,11 @@ class MyPosts extends Model {
 
     //The MyPosts class is intentionally empty right now
 
+    public $validates = array(
+        'title' => array(
+            array('notEmpty', 'message'=>'You must include a title.')
+        )
+    );
 }
 
 ?>

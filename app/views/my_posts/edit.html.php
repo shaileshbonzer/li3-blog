@@ -8,7 +8,19 @@
 ?>
 
 <a href="/my_posts/">Return to Index</a>
-<?=$this->form->create(); ?>
+
+<!--Customize the form error messages-->
+<?php
+$this->form->config(
+    array(
+        'templates' => array(
+            'error' => '<div class="error">{:content}</div>'
+        )
+    )
+);
+?>
+
+<?=$this->form->create($myPost); ?>
 <?=$this->form->field('title',array('value'=>$myPost->title)); ?>
 <?=$this->form->field('body',
     array('type'=>'textarea','value'=>$myPost->body)); ?>

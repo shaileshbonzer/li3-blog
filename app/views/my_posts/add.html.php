@@ -11,8 +11,19 @@
     <h4>Data saved successfully!</h4>
 <?php endif; ?>
 
+<!--Customize the form error messages-->
+<?php
+$this->form->config(
+    array(
+        'templates' => array(
+            'error' => '<div class="error">{:content}</div>'
+        )
+    )
+);
+?>
+
 <!--Generate the opening form tag-->
-<?=$this->form->create(); ?>
+<?=$this->form->create($myPost); ?>
 <!--Generate a text field for "title"-->
 <?=$this->form->field('title');?>
 <!--Generate a textarea field for body content-->
